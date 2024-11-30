@@ -10,6 +10,9 @@
   "author": "Striatp",
   "license": "MIT",
   "dependencies": {
-    "@types/node": "^18.0.6"
+    "@tryforge/forge.canvas": "^1.1.1",
+    "@tryforge/forge.db": "^2.0.6",
+    "@tryforge/forgescript": "github:tryforge/ForgeScript#dev",
+    "sqlite3": "^5.1.7"
   }
 }
