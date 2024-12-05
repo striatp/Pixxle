@@ -12,5 +12,18 @@ module.exports = {
             }
         ]
     },
-    code: ``
+    code: `
+$let[User;$if[$option[member]==;$authorID;$option[member]]]
+
+$let[Level;$getUserVar[$guildID-Level;$get[User];0]]
+$let[XP;$getUserVar[$guildID-XP;$get[User];0]]
+$let[ReqXP;$getUserVar[$guildID-ReqXP;$get[User];100]]
+
+$let[Avatar;$userAvatar[$get[User]]]
+$let[Username;$username[$get[User]]]
+
+$let[Image;https://api.aggelos-007.xyz/rankcard?username=$get[Username]&xp=$get[XP]&maxxp=$get[ReqXP]&level=$get[Level]&avatar=$get[Avatar]]
+
+$attachment[$get[Image];level.png]
+`
 }
