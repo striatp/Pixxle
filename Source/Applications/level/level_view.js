@@ -1,3 +1,6 @@
+const config = require("../../config.js");
+const primary = `${config.COLOR.primary}`;
+
 module.exports = {
     data: {
         type: 1,
@@ -24,7 +27,8 @@ $let[Username;$username[$get[User]]]
 
 $let[Image;https://api.aggelos-007.xyz/rankcard?username=$get[Username]&xp=$get[XP]&maxxp=$get[ReqXP]&level=$get[Level]&avatar=$get[Avatar]]
 
-🚀 You are missing [$math[$get[ReqXP] - $get[XP]]\\]($get[Image]) to level up!
+$image[$get[Image]]
+$color[${primary}]
 
 $addActionRow
   $addButton[$authorID-Edit-Level-Card;Edit Background;Secondary;🪄]
