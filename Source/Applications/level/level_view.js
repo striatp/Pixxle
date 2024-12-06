@@ -24,6 +24,9 @@ $let[Username;$username[$get[User]]]
 
 $let[Image;https://api.aggelos-007.xyz/rankcard?username=$get[Username]&xp=$get[XP]&maxxp=$get[ReqXP]&level=$get[Level]&avatar=$get[Avatar]]
 
-$attachment[$get[Image];level.png]
+🚀 You are missing [$math[$get[ReqXP] - $get[XP]]\\]($get[Image]) to level up!
+
+$addActionRow
+  $addButton[$authorID-Edit-Level-Card;Edit Background;Secondary;🪄]
 `
 }
