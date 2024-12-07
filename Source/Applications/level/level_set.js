@@ -22,13 +22,16 @@ module.exports = {
         ]
     },
     code: `
-$c[Local variables definition]
+$onlyIf[$hasPerms[$guildID;$authorID;ModerateMembers];$interactionReply[
+    $description[You do not have the necessary permissions to use this command.]
+    $color[${primary}]
+]]
+
 $let[User;$if[$option[target]==;$authorID;$option[target]]]
 
 $setUserVar[$guildID-Level;$option[level];$get[User]]
 $setUserVar[$guildID-ReqXP;$math[$option[level]*100+100];$get[User]]
 
-$c[Outputting the embed]
 $interactionReply[
     $ifx[
         $if[$get[User]==$authorID;
