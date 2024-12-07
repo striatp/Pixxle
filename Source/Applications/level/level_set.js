@@ -25,17 +25,17 @@ module.exports = {
 $c[Local variables definition]
 $let[User;$if[$option[target]==;$authorID;$option[target]]]
 
-$setUserVar[$guildID-Level;$option[amount];$get[User]]
-$setUserVar[$guildID-ReqXP;$math[$option[amount]*100+100];$get[User]]
+$setUserVar[$guildID-Level;$option[level];$get[User]]
+$setUserVar[$guildID-ReqXP;$math[$option[level]*100+100];$get[User]]
 
 $c[Outputting the embed]
 $interactionReply[
     $ifx[
         $if[$get[User]==$authorID;
-            $description[Successfully set your leveling progression to **$option[amount]**.]
+            $description[Successfully set your leveling progression to **$option[level]**.]
         ]
         $else[
-            $description[Successfully set <@$get[User]>'s leveling progression to **$option[amount]**.]
+            $description[Successfully set <@$get[User]>'s leveling progression to **$option[level]**.]
         ]
     ]
     $color[${primary}]
