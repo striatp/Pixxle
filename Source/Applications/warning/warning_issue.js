@@ -73,6 +73,8 @@ $onlyIf[$option[target]!=$authorID;$interactionReply[
     $color[${primary_color}]
 ]]
 
+$c[Local variables]
+
 $let[User;$option[target]]
 $let[Reason;$if[$option[reason]==;No reason provided.;$option[reason]]]
 $let[SeverityInt;$if[$option[severity]==;0;$option[severity]]]
@@ -86,6 +88,22 @@ $ifx[
 $let[Action;$if[$option[action]==;none;$option[action]]]
 $let[Duration;$parseString[$option[duration]]]
 
-$
+$c[Server & User variables management]
+
+$let[ServerCases;$getGuildVar[ServerCases;$guildID]]
+$arrayLoad[ServerCases;//!//;$get[ServerCases]]
+
+$let[CurrentCase;$math[$arrayLength[ServerCases]+1]]
+$let[CaseData;$get[CurrentCase]///$get[User]///$authorID///$get[Reason]///$get[SeverityInt]///$get[SeverityStr]///$get[Action]///$get[Duration]///$getTimestamp]
+
+$setGuildVar[ServerCases;$if[$get[ServerCases]==;;//!//]$get[ServerCases]$get[CaseData];$guildID]
+
+$c[Direct messaging]
+
+$if[$isUserDMEnabled[$get[User]]==true;
+    $let[DLMessageID;$sendMessage[$dmChannelID[$get[User]];
+        $til
+    ]]
+;]
 `
 };
