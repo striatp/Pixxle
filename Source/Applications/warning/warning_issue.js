@@ -91,7 +91,7 @@ $let[Duration;$parseString[$option[duration]]]
 $c[Server & User variables management]
 
 $let[ServerCases;$getGuildVar[ServerCases;$guildID]]
-$let[UserCases;$get[$guildID-UserCases;$get[User]]]
+$let[UserCases;$getUserVar[$guildID-UserCases;$get[User]]]
 $arrayLoad[ServerCases;//!//;$get[ServerCases]]
 $arrayLoad[UserCases;//!//;$get[UserCases]]
 
