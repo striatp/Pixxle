@@ -1,3 +1,6 @@
+const system = require("../../config.js");
+const primary_color = `${system.COLORS.primary}`;
+
 module.exports = {
     data: {
         type: 1,
@@ -6,7 +9,7 @@ module.exports = {
         options: [
             {
                 type: 6, // User option type
-                name: "member",
+                name: "target",
                 description: "The member to warn.",
                 required: true
             },
@@ -47,5 +50,21 @@ module.exports = {
             }
         ]
     },
-    code: ``
+    code: `
+$onlyIf[$hasPerms[$guildID;$authorID;ModerateMembers]==true;$interactionReply[
+    $ephemeral
+    $description[You do not have the necessary permissions to issue a warning to a member.]
+    $color[${primary_color}]
+]]
+$onlyIf[$option[target]!=$authorID;$interactionReply[
+    $ephemeral
+    $description[You cannot issue a warning to yourself.]
+    $color[${primary_color}]
+]]
+$onlyIf[$rolePosition[$guildID;$memberHighestRoleID[$guildID;$option[target]]]<$rolePosition[$guildID;$memberHighestRoleID[$guildID;$authorID]];$interactionReply[
+    $ephemeral
+    $description[You cannot issue a warning to a member with a role higher than or equal to your highest role.]
+    $color[${primary_color}]
+]]
+`
 };
