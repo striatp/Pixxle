@@ -91,19 +91,35 @@ $let[Duration;$parseString[$option[duration]]]
 $c[Server & User variables management]
 
 $let[ServerCases;$getGuildVar[ServerCases;$guildID]]
+$let[UserCases;$get[$guildID-UserCases;$get[User]]]
 $arrayLoad[ServerCases;//!//;$get[ServerCases]]
+$arrayLoad[UserCases;//!//;$get[UserCases]]
 
 $let[CurrentCase;$math[$arrayLength[ServerCases]+1]]
 $let[CaseData;$get[CurrentCase]///$get[User]///$authorID///$get[Reason]///$get[SeverityInt]///$get[SeverityStr]///$get[Action]///$get[Duration]///$getTimestamp]
 
 $setGuildVar[ServerCases;$if[$get[ServerCases]==;;//!//]$get[ServerCases]$get[CaseData];$guildID]
+$setUserVar[$guildID-UserCases;$if[$get[UserCases]==;;//!//]$get[UserCases]$get[CaseData];$guildID]
 
 $c[Direct messaging]
 
 $if[$isUserDMEnabled[$get[User]]==true;
-    $let[DLMessageID;$sendMessage[$dmChannelID[$get[User]];
-        $til
+    $let[DMMessageID;$sendMessage[$dmChannelID[$get[User]];
+        $title[Warning Received]
+        $description[You have received a warning from **$guildName**. You now have **$math[$arrayLength[UserCases]+1]** warning(s).]
+        $addField[Moderator;$username[$authorID]]
+        $addField[Reason;$get[Reason]]
+        $footer[Case #$get[CurrentCase] : $get[SeverityStr]]
+        $timestamp
     ]]
+    $addButtonTo[$dmChannelID[$get[User]];$get[DMMessageID];None;Sent from $cropText[$guildName;;30];Secondary;;true]
 ;]
+
+$c[Response]
+
+$interactionReply[
+    $description[A warning has been successfully issued to **$username[$get[User]]**.]
+    $color[${primary_color}]
+]
 `
 };
