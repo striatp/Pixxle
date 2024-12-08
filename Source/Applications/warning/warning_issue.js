@@ -80,9 +80,9 @@ $let[Reason;$if[$option[reason]==;No reason provided.;$option[reason]]]
 $let[SeverityInt;$if[$option[severity]==;0;$option[severity]]]
 $let[SeverityStr;]
 $ifx[
-    $if[$get[SeverityStr]==1;$let[Severity;Low]]
-    $elseIf[$get[SeverityStr]==2;$let[Severity;Medium]]
-    $elseIf[$get[SeverityStr]==3;$let[Severity;High]]
+    $if[$get[SeverityInt]==1;$let[SeverityStr;Low]]
+    $elseIf[$get[SeverityInt]==2;$let[SeverityStr;Medium]]
+    $elseIf[$get[SeverityInt]==3;$let[SeverityStr;High]]
     $else[$let[SeverityStr;Undefined]]
 ]
 $let[Action;$if[$option[action]==;none;$option[action]]]
@@ -92,25 +92,30 @@ $c[Server & User variables management]
 
 $let[ServerCases;$getGuildVar[ServerCases;$guildID]]
 $let[UserCases;$getUserVar[$guildID-UserCases;$get[User]]]
+$let[ServerCasesCount;$getGuildID[ServerCasesCount;$guildID;0]]
+$let[UserWarningsCount;$getUserVar[$guildID-UserWarningsCount;$get[User];0]
 $arrayLoad[ServerCases;//!//;$get[ServerCases]]
 $arrayLoad[UserCases;//!//;$get[UserCases]]
 
-$let[CurrentCase;$math[$arrayLength[ServerCases]+1]]
-$let[CaseData;$get[CurrentCase]///$get[User]///$authorID///$get[Reason]///$get[SeverityInt]///$get[SeverityStr]///$get[Action]///$get[Duration]///$getTimestamp]
+$let[CaseData;warning///$get[CurrentCase]///$get[User]///$authorID///$get[Reason]///$get[SeverityInt]///$get[SeverityStr]///$get[Action]///$get[Duration]///$getTimestamp]
 
 $setGuildVar[ServerCases;$if[$get[ServerCases]==;;//!//]$get[ServerCases]$get[CaseData];$guildID]
 $setUserVar[$guildID-UserCases;$if[$get[UserCases]==;;//!//]$get[UserCases]$get[CaseData];$guildID]
+$setUserVar[$guildID-UserWarningsCount;$math[$get[UserWarningsCount]+1]]
+$let[UserWarningsCount;$getUserVar[$guildID-UserWarningsCount;$get[User];0]]
+$setGuildVar[ServerCasesCount;$math[$get[ServerCasesCount]+1]]
+$let[ServerCasesCount;$getGuildVar[ServerCasesCount;$get[User];0]]
 
 $c[Direct messaging]
 
 $if[$isUserDMEnabled[$get[User]]==true;
     $let[DMMessageID;$sendMessage[$dmChannelID[$get[User]];
         $title[Warning Received]
-        $description[You have received a warning from **$guildName**. You now have **$math[$arrayLength[UserCases]+1]** warning(s).]
+        $description[You have received a warning from **$guildName**. You now have **$get[UserWarningsCount]** warning(s).]
         $addField[Moderator;$username[$authorID]]
         $addField[Reason;$get[Reason]]
         $color[${primary_color}]
-        $footer[Case #$get[CurrentCase] : $get[SeverityStr]]
+        $footer[Case #$get[ServerCasesCount] : $get[SeverityStr]]
         $timestamp
     ;true]]
     $!addButtonTo[$dmChannelID[$get[User]];$get[DMMessageID];None;Sent from $cropText[$guildName;;30];Secondary;;true]
