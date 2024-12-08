@@ -112,7 +112,7 @@ $if[$isUserDMEnabled[$get[User]]==true;
         $color[${primary_color}]
         $footer[Case #$get[CurrentCase] : $get[SeverityStr]]
         $timestamp
-    ];true]
+    ;true]]
     $addButtonTo[$dmChannelID[$get[User]];$get[DMMessageID];None;Sent from $cropText[$guildName;;30];Secondary;;true]
 ;]
 
