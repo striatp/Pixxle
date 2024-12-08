@@ -93,18 +93,20 @@ $c[Server & User variables management]
 $let[ServerCases;$getGuildVar[ServerCases;$guildID]]
 $let[UserCases;$getUserVar[$guildID-UserCases;$get[User]]]
 $let[ServerCasesCount;$getGuildVar[ServerCasesCount;$guildID;0]]
+$let[CurrentCase;$math[$get[ServerCasesCount]+1]]
 $let[UserWarningsCount;$getUserVar[$guildID-UserWarningsCount;$get[User];0]]
+
 $arrayLoad[ServerCases;//!//;$get[ServerCases]]
 $arrayLoad[UserCases;//!//;$get[UserCases]]
 
 $let[CaseData;warning///$get[CurrentCase]///$get[User]///$authorID///$get[Reason]///$get[SeverityInt]///$get[SeverityStr]///$get[Action]///$get[Duration]///$getTimestamp]
 
 $setGuildVar[ServerCases;$if[$get[ServerCases]==;;//!//]$get[ServerCases]$get[CaseData];$guildID]
-$setUserVar[$guildID-UserCases;$if[$get[UserCases]==;;//!//]$get[UserCases]$get[CaseData];$guildID]
-$setUserVar[$guildID-UserWarningsCount;$math[$get[UserWarningsCount]+1]]
-$let[UserWarningsCount;$getUserVar[$guildID-UserWarningsCount;$get[User];0]]
-$setGuildVar[ServerCasesCount;$math[$get[ServerCasesCount]+1]]
-$let[ServerCasesCount;$getGuildVar[ServerCasesCount;$get[User];0]]
+$setUserVar[$guildID-UserCases;$if[$get[UserCases]==;;//!//]$get[UserCases]$get[CaseData];$get[User]]
+$setUserVar[$guildID-UserWarningsCount;$math[$get[UserWarningsCount]+1];$get[User]]
+$let[UserWarningsCount;$getUserVar[$guildID-UserWarningsCount;$get[User]]]
+$setGuildVar[ServerCasesCount;$math[$get[ServerCasesCount]+1];$guildID]
+$let[ServerCasesCount;$getGuildVar[ServerCasesCount;$guildID]]
 
 $c[Direct messaging]
 
