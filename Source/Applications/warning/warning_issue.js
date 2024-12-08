@@ -113,12 +113,13 @@ $if[$isUserDMEnabled[$get[User]]==true;
         $footer[Case #$get[CurrentCase] : $get[SeverityStr]]
         $timestamp
     ;true]]
-    $addButtonTo[$dmChannelID[$get[User]];$get[DMMessageID];None;Sent from $cropText[$guildName;;30];Secondary;;true]
+    $!addButtonTo[$dmChannelID[$get[User]];$get[DMMessageID];None;Sent from $cropText[$guildName;;30];Secondary;;true]
 ;]
 
 $c[Response]
 
 $interactionReply[
+    $ephemeral
     $description[A warning has been successfully issued to **$username[$get[User]]**.]
     $color[${primary_color}]
 ]
