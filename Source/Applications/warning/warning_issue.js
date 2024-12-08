@@ -25,6 +25,7 @@ module.exports = {
                 description: "Set the severity level of the warning (1 = Low, 2 = Medium, 3 = High).",
                 required: false,
                 choices: [
+                 // { name: "Undefined", value: 0 },
                     { name: "Low", value: 1 },
                     { name: "Medium", value: 2 },
                     { name: "High", value: 3 }
@@ -59,6 +60,11 @@ $onlyIf[$hasPerms[$guildID;$authorID;ModerateMembers]==true;$interactionReply[
 $onlyIf[$rolePosition[$guildID;$memberHighestRoleID[$guildID;$option[target]]]<$rolePosition[$guildID;$memberHighestRoleID[$guildID;$authorID]];$interactionReply[
     $ephemeral
     $description[You cannot issue a warning to a member with a role higher than or equal to your highest role.]
+    $color[${primary_color}]
+]]
+$onlyIf[$isBot[$option[target]]!=true;$interactionReply[
+    $ephemeral
+    $description[You cannot issue a warning to a bot.]
     $color[${primary_color}]
 ]]
 $onlyIf[$option[target]!=$authorID;$interactionReply[
