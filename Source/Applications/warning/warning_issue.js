@@ -84,5 +84,6 @@ $ifx[
     $else[$let[Severity;Undefined]]
 ]
 $let[Action;$if[$option[action]==;none;$option[action]]]
+$let[Duration;$parseString[$option[duration]]]
 `
 };
