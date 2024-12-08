@@ -92,7 +92,7 @@ $c[Server & User variables management]
 
 $let[ServerCases;$getGuildVar[ServerCases;$guildID]]
 $let[UserCases;$getUserVar[$guildID-UserCases;$get[User]]]
-$let[ServerCasesCount;$getGuildID[ServerCasesCount;$guildID;0]]
+$let[ServerCasesCount;$getGuildVar[ServerCasesCount;$guildID;0]]
 $let[UserWarningsCount;$getUserVar[$guildID-UserWarningsCount;$get[User];0]
 $arrayLoad[ServerCases;//!//;$get[ServerCases]]
 $arrayLoad[UserCases;//!//;$get[UserCases]]
