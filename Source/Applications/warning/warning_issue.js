@@ -72,5 +72,17 @@ $onlyIf[$option[target]!=$authorID;$interactionReply[
     $description[You cannot issue a warning to yourself.]
     $color[${primary_color}]
 ]]
+
+$let[User;$option[target]]
+$let[Reason;$if[$option[reason]==;No reason provided.;$option[reason]]]
+$let[SeverityInt;$if[$option[severity]==;0;$option[severity]]]
+$let[SeverityStr;]
+$ifx[
+    $if[$get[SeverityInt]==1;$let[Severity;Low]]
+    $elseIf[$get[SeverityInt]==2;$let[Severity;Medium]]
+    $elseIf[$get[SeverityInt]==3;$let[Severity;High]]
+    $else[$let[Severity;Undefined]]
+]
+$let[Action;$if[$option[action]==;none;$option[action]]]
 `
 };
