@@ -148,6 +148,19 @@ $if[$channelExists[$get[LogChannel]]==true;
 
 $c[Action]
 
+$ifx[
+    $if[$get[Action]==mute;
+        $timeout[$guildID;$get[User];$get[Duration];$get[Reason]]
+    ]
+    $elseIf[$get[Action]==kick;
+        $kickMember[$guildID;$get[User];$get[Reason]]
+    ]
+    $elseIf[$get[Action]==ban;
+        $ban[$guildID;$get[User];$get[Reason]]
+    ]
+    $else[]
+]
+
 $c[Response]
 
 $interactionReply[
