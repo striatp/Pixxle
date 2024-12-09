@@ -119,7 +119,7 @@ $if[$isUserDMEnabled[$get[User]]==true;
     $let[DMMessageID;$sendMessage[$dmChannelID[$get[User]];
         $title[Warning Received]
         $description[You have received a warning from **$guildName**. You now have **$get[UserWarningsCount]** warning(s).]
-        $addField[Moderator;$username[$authorID]]
+        $addField[Moderator;$username[$authorID] \`($authorID)\`]
         $addField[Reason;$get[Reason]]
         $color[${primary_color}]
         $footer[Case #$get[ServerCasesCount] : $get[SeverityStr]]
@@ -133,9 +133,20 @@ $c[Logging channel]
 $let[LogChannel;$getGuildVar[LoggingChannel;$guildID]]
 $if[$channelExists[$get[LogChannel]]==true;
     $sendMessage[$get[LogChannel];
-    
+        $author[Target: $username[$get[User]];$userAvatar[$get[User]]]
+        $title[Warning Logged]
+        $description[This warning was issued to **$username[$get[User]]**. This person now has **$get[UserWarningsCount]** warning(s).]
+        $addField[Moderator; $username[$authorID] \`($authorID)\`]
+        $addField[Reason;Any kind of discrimination towards other members of the server is strictly prohibited.]
+        $addField[Severity;$get[SeverityStr] ($get[SeverityInt])]
+        $addField[Action Taken;$get[Action] ($if[$get[Duration]==0;No duration.;$get[Duration]])]
+        $color[${primary_color}]
+        $footer[Case #$get[ServerCasesCount] - $get[User]]
+        $timestamp
     ]
 ;]
+
+$c[Action]
 
 $c[Response]
 
