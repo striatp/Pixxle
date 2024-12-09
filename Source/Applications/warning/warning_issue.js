@@ -87,6 +87,11 @@ $ifx[
 ]
 $let[Action;$if[$option[action]==;none;$option[action]]]
 $let[Duration;$parseString[$option[duration]]]
+$onlyIf[$get[Duration]!=0;$interactionReply[
+    $ephemeral
+    $description[The format used in the duration is incorrect (e.g.: 5min, 2h, 7d).]
+    $color[${primary_color}]
+]]
 
 $c[Server & User variables management]
 
@@ -121,6 +126,15 @@ $if[$isUserDMEnabled[$get[User]]==true;
         $timestamp
     ;true]]
     $!addButtonTo[$dmChannelID[$get[User]];$get[DMMessageID];None;Sent from $cropText[$guildName;;30];Secondary;;true]
+;]
+
+$c[Logging channel]
+
+$let[LogChannel;$getGuildVar[LoggingChannel;$guildID]]
+$if[$channelExists[$get[LogChannel]]==true;
+    $sendMessage[$get[LogChannel];
+    
+    ]
 ;]
 
 $c[Response]
