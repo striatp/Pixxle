@@ -44,7 +44,7 @@ $onlyIf[$arrayAt[CaseData;0]==warning;$interactionReply[
 
 $interactionReply[
     $author[Target: $username[$arrayAt[CaseData;2]];$userAvatar[$arrayAt[CaseData;2]]]
-    $title[Warning Case]
+    $title[Warning Case #$arrayAt[CaseData;1]]
     $description[This warning was issued to **$username[$arrayAt[CaseData;2]]**.]
     $addField[Moderator;$username[$arrayAt[CaseData;3]] \`($arrayAt[CaseData;3])\`]
     $addField[Reason;$arrayAt[CaseData;4]]
