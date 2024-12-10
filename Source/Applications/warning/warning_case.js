@@ -24,10 +24,11 @@ $onlyIf[$hasPerms[$guildID;$authorID;ModerateMembers]==true;$interactionReply[
 
 $let[ServerCases;$getGuildVar[ServerCases;$guildID]]
 $arrayLoad[ServerCases;//!//;$get[ServerCases]]
+$log[$arrayAt[ServerCases;1]]
+$let[CaseID;$option[case_id]]
 
 $sendMessage[$channelID;
 $arrayAt[ServerCases;$get[CaseID]]]
-$let[CaseID;$option[case_id]]
 $onlyIf[$arrayAt[ServerCases;$get[CaseID]]!=;$interactionReply[
     $ephemeral
     $description[There is no case with the id **$get[CaseID]**.]
