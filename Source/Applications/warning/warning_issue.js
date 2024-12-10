@@ -141,7 +141,7 @@ $if[$channelExists[$get[LogChannel]]==true;
         $addField[Moderator; $username[$authorID] \`($authorID)\`]
         $addField[Reason;Any kind of discrimination towards other members of the server is strictly prohibited.]
         $addField[Severity;$get[SeverityStr] ($get[SeverityInt])]
-        $addField[Action Taken;$get[Action] ($if[$get[Duration]==0;No duration.;$get[Duration]])]
+        $addField[Action Taken;$get[Action] ($if[$get[Duration]==0;No duration.;$option[duration]])]
         $color[${primary_color}]
         $footer[Case #$get[ServerCasesCount] - $get[User]]
         $timestamp
