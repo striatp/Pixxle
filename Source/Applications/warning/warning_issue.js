@@ -87,11 +87,13 @@ $ifx[
 ]
 $let[Action;$if[$option[action]==;none;$option[action]]]
 $let[Duration;$parseString[$option[duration]]]
-$onlyIf[$and[$get[Duration]!=0;$get[Action]==mute]==true;$interactionReply[
-    $ephemeral
-    $description[The format used in the duration is incorrect (e.g.: 5min, 2h, 7d).]
-    $color[${primary_color}]
-]]
+$if[$get[Action]==mute;
+    $onlyIf[$get[Duration]!=0;$interactionReply[
+        $ephemeral
+        $description[The format used in the duration is incorrect (e.g.: 5min, 2h, 7d).]
+        $color[${primary_color}]
+    ]]
+;]
 
 $c[Server & User variables management]
 
