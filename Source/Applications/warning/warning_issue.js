@@ -139,7 +139,7 @@ $if[$channelExists[$get[LogChannel]]==true;
         $title[Warning Logged]
         $description[This warning was issued to **$username[$get[User]]**. This person now has **$get[UserWarningsCount]** warning(s).]
         $addField[Moderator; $username[$authorID] \`($authorID)\`]
-        $addField[Reason;Any kind of discrimination towards other members of the server is strictly prohibited.]
+        $addField[Reason;$get[Reason]]
         $addField[Severity;$get[SeverityStr] ($get[SeverityInt])]
         $addField[Action Taken;$get[Action] ($if[$get[Duration]==0;No duration.;$option[duration]])]
         $color[${primary_color}]
