@@ -4,7 +4,7 @@ const primary_color = `${system.COLORS.primary}`;
 module.exports = {
     data: {
         type: 1,
-        name: "caseinfo",
+        name: "case",
         description: "Retrieve details about a specific warning case.",
         options: [
             {
