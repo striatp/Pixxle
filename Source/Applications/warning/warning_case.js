@@ -43,13 +43,14 @@ $onlyIf[$arrayAt[CaseData;0]==warning;$interactionReply[
 ]]
 
 $interactionReply[
-    $author[Target: $username[$arrayAt[CaseData;2]]]
+    $author[Target: $username[$arrayAt[CaseData;2]];$userAvatar[$arrayAt[CaseData;2]]]
     $title[Warning Case]
     $description[This warning was issued to **$username[$arrayAt[CaseData;2]]**.]
     $addField[Moderator;$username[$arrayAt[CaseData;3]] \`($arrayAt[CaseData;3])\`]
     $addField[Reason;$arrayAt[CaseData;4]]
     $addField[Severity;$arrayAt[CaseData;6] ($arrayAt[CaseData;5])]
     $addField[Action Taken;$arrayAt[CaseData;7] ($if[$arrayAt[CaseData;8]==0;No duration.;$parseMS[$arrayAt[CaseData;8]]])]
+    $color[${primary_color}]
     $footer[Case #$arrayAt[CaseData;1] - $arrayAt[CaseData;2]]
     $timestamp[$arrayAt[CaseData;9]]
 ]
