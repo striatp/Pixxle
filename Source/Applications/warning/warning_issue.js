@@ -120,7 +120,7 @@ $c[Direct messaging]
 $if[$isUserDMEnabled[$get[User]]==true;
     $let[DMMessageID;$sendMessage[$dmChannelID[$get[User]];
         $title[Warning Received]
-        $description[You have received a warning from **$guildName**. You now have **$get[UserWarningsCount]** warning(s).]
+        $description[You have received a warning from **$guildName**. You now have **$get[UserWarningsCount]** warning(s).$if[$get[Action]!=none; A **$get[action]** has also been issued.;]]
         $addField[Moderator;$username[$authorID] \`($authorID)\`]
         $addField[Reason;$get[Reason]]
         $color[${primary_color}]
