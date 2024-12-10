@@ -167,7 +167,12 @@ $c[Response]
 
 $interactionReply[
     $ephemeral
-    $description[A warning has been successfully issued to **$username[$get[User]]**.]
+    $ifx[
+        $if[$get[Action]==none;$description[A warning has been successfully issued to **$username[$get[User]]**.]]
+        $elseIf[$get[Action]==mute;$description[A warning has been successfully issued to **$username[$get[User]]** and the user has been muted.]]
+        $elseIf[$get[Action]==kick;$description[A warning has been successfully issued to **$username[$get[User]]** and the user has been kicked.]]
+        $elseIf[$get[Action]==ban;$description[A warning has been successfully issued to **$username[$get[User]]** and the user has been banned.]]
+    ]
     $color[${primary_color}]
 ]
 `
