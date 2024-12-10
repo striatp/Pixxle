@@ -28,10 +28,30 @@ $arrayLoad[ServerCases;//!//;$get[ServerCases]]
 
 $onlyIf[$arrayAt[ServerCases;$get[CaseID]]!=;$interactionReply[
     $ephemeral
-    $description[There is no case with the id **$get[CaseID]**.]
+    $description[There is no case with this specific ID ($get[CaseID]).]
     $color[${primary_color}]
 ]]
 
-$arrayAt[ServerCases;$math[$get[CaseID]-1]]
+$let[UserWarningsCount;$getUserVar[$guildID-UserWarningsCount;$get[User]]]
+$let[CaseData;$arrayAt[ServerCases;$math[$get[CaseID]-1]]]
+$arrayLoad[CaseData;///;$get[CaseData]]
+
+$onlyIf[$arrayAt[CaseData;0]==warning;$interactionReply[
+    $ephemeral
+    $description[This case is not a warning.]
+    $color[${primary_color}]
+]]
+
+$interactionReply[
+    $author[Target: $username[$arrayAt[CaseData;2]]]
+    $title[Warning Case]
+    $description[This warning was issued to **$username[$arrayAt[CaseData;2]]**.]
+    $addField[Moderator;$username[$arrayAt[CaseData;3]] \`($arrayAt[CaseData;3])\`]
+    $addField[Reason;$arrayAt[CaseData;4]]
+    $addField[Severity;$arrayAt[CaseData;6] ($arrayAt[CaseData;5])]
+    $addField[Action Taken;$arrayAt[CaseData;7] ($if[$arrayAt[CaseData;8]==0;No duration.;$parseMS[$arrayAt[CaseData;8]]])]
+    $footer[Case #$arrayAt[CaseData;1] - $arrayAt[CaseData;2]]
+    $timestamp[$arrayAt[CaseData;9]]
+]
 `
 };
