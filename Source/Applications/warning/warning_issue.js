@@ -87,7 +87,7 @@ $ifx[
 ]
 $let[Action;$if[$option[action]==;none;$option[action]]]
 $let[Duration;$parseString[$option[duration]]]
-$onlyIf[$get[Duration]!=0;$interactionReply[
+$onlyIf[$and[$get[Duration]!=0;$get[Action]==mute]==true;$interactionReply[
     $ephemeral
     $description[The format used in the duration is incorrect (e.g.: 5min, 2h, 7d).]
     $color[${primary_color}]
@@ -132,7 +132,7 @@ $c[Logging channel]
 
 $let[LogChannel;$getGuildVar[LoggingChannel;$guildID]]
 $if[$channelExists[$get[LogChannel]]==true;
-    $sendMessage[$get[LogChannel];
+    $!sendMessage[$get[LogChannel];
         $author[Target: $username[$get[User]];$userAvatar[$get[User]]]
         $title[Warning Logged]
         $description[This warning was issued to **$username[$get[User]]**. This person now has **$get[UserWarningsCount]** warning(s).]
@@ -150,13 +150,13 @@ $c[Action]
 
 $ifx[
     $if[$get[Action]==mute;
-        $timeout[$guildID;$get[User];$get[Duration];$get[Reason]]
+        $!timeout[$guildID;$get[User];$get[Duration];$get[Reason]]
     ]
     $elseIf[$get[Action]==kick;
-        $kickMember[$guildID;$get[User];$get[Reason]]
+        $!kickMember[$guildID;$get[User];$get[Reason]]
     ]
     $elseIf[$get[Action]==ban;
-        $ban[$guildID;$get[User];$get[Reason]]
+        $!ban[$guildID;$get[User];$get[Reason]]
     ]
     $else[]
 ]
