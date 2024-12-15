@@ -22,8 +22,30 @@ module.exports = {
                 required: true,
                 max_length: 1800, // String maximum length
                 min_length: 1 // String minimal length
+            },
+            {
+                type: 3, // String option type
+                name: "nsfw",
+                description: "The tag is considered NSFW (default: False).",
+                required: false,
+                choices: [
+                    { name: "True", value: "true" },
+                    { name: "False", value: "false" }
+                ]
             }
         ]
     },
-    code: ``
+    code: `
+$let[TagsRestricted;$getGuildVar[TagsRestricted;$guildID;false]]
+$onlyIf[$get[TagsRestricted]==true;$interactionReply[
+    $ephemeral
+    $description[You do not have the permission to create tags.]
+    $color[${primary_color}]
+]]
+
+$let[Tags;$getGuildVar[ServerTags;$guildID]]
+
+$let[Author;$authorID]
+$let[IsNSFW;$if[$option[nsfw]==;false;$option[nsfw]]]
+`
 };
