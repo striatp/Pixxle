@@ -44,8 +44,17 @@ $onlyIf[$get[TagsRestricted]==true;$interactionReply[
 ]]
 
 $let[Tags;$getGuildVar[ServerTags;$guildID]]
-
 $let[Author;$authorID]
 $let[IsNSFW;$if[$option[nsfw]==;false;$option[nsfw]]]
+$let[Name;$option[name]]
+$let[Content;option[content]]
+
+$interactionReply[
+    $ephemeral
+    This is a preview of the tag. If you want to implement it, click "Append".
+    $title[$get[Name]]
+    $description[$get[Content]]
+    $color[${primary_color}]
+]
 `
 };
