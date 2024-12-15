@@ -51,13 +51,15 @@ $let[Content;$option[content]]
 
 $interactionReply[
     $ephemeral
-    This is a preview of the tag. If you want to implement it, click "Create".
+    *This is a preview only of the tag.*
     $title[$get[Name]]
     $description[$get[Content]]
     $color[${primary_color}]
+    $footer[Written by $username[$get[Author]];$userAvatar[$get[Author]]]
+    $timestamp
 
     $addActionRow
-    $addButton[Tag_Btn_Create;Create;Success]
+    $addButton[Tag_Btn_Create;Create;Secondary]
 ]
 `
 };
