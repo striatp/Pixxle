@@ -51,10 +51,13 @@ $let[Content;option[content]]
 
 $interactionReply[
     $ephemeral
-    This is a preview of the tag. If you want to implement it, click "Append".
+    This is a preview of the tag. If you want to implement it, click "Create".
     $title[$get[Name]]
     $description[$get[Content]]
     $color[${primary_color}]
+
+    $addActionRow
+    $addButton[Tag_Btn_Create;Create;Success]
 ]
 `
 };
