@@ -37,7 +37,7 @@ module.exports = {
     },
     code: `
 $let[TagsRestricted;$getGuildVar[TagsRestricted;$guildID;false]]
-$onlyIf[$get[TagsRestricted]==true;$interactionReply[
+$onlyIf[$get[TagsRestricted]!=true;$interactionReply[
     $ephemeral
     $description[You do not have the permission to create tags.]
     $color[${primary_color}]
