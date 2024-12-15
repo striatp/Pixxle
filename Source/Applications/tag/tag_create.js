@@ -47,7 +47,7 @@ $let[Tags;$getGuildVar[ServerTags;$guildID]]
 $let[Author;$authorID]
 $let[IsNSFW;$if[$option[nsfw]==;false;$option[nsfw]]]
 $let[Name;$option[name]]
-$let[Content;option[content]]
+$let[Content;$option[content]]
 
 $interactionReply[
     $ephemeral
