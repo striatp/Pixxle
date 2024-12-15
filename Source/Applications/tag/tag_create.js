@@ -55,8 +55,6 @@ $interactionReply[
     $title[$get[Name]]
     $description[$get[Content]]
     $color[${primary_color}]
-    $footer[Written by $username[$get[Author]];$userAvatar[$get[Author]]]
-    $timestamp
 
     $addActionRow
     $addButton[Tag_Btn_Create;Create;Secondary]
