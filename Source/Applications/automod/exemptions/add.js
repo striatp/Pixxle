@@ -10,7 +10,7 @@ module.exports = {
             {
                 type: 8,
                 name: "role",
-                description: "Select a role to exempt from Auto-Mod actions.",
+                description: "Specify the role you want to add to the Auto-Mod exemptions list.",
                 required: true
             }
         ]
