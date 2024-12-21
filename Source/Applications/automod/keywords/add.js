@@ -5,7 +5,7 @@ module.exports = {
     data: {
         type: 1,
         name: "add",
-        description: "The keyword to block.",
+        description: "Add specific keywords to the Auto-Mod filter.",
         options: [
             {
                 type: 3,
