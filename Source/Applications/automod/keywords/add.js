@@ -15,7 +15,14 @@ module.exports = {
             },
             {
                 type: 3,
-                name: "
+                name: "severity",
+                description: "Set the importance of the keyword for stricter handling.",
+                required: true,
+                choices: [
+                    { name: "Low", value: "low" },
+                    { name: "Medium", value: "medium" },
+                    { name: "High", value: "high" }
+                ]
             }
         ]
     },
