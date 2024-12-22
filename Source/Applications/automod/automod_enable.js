@@ -10,22 +10,22 @@ module.exports = {
     code: `
 $onlyIf[$guildOwnerID[$guildId]==$authorID;$interactionReply[
     $ephemeral
-    $description[Only the server owner can disable Auto-Mod features.]
+    $description[Only the server owner can enable Auto-Mod features.]
     $color[${primary_color}]
 ]]
 
 $let[AutoMod;$getGuildVar[AutoMod;$guildID;false]]
-$onlyIf[$get[AutoMod]==true;$interactionReply[
+$onlyIf[$get[AutoMod]==false;$interactionReply[
     $ephemeral
-    $description[Auto-Mod features are already disabled.]
+    $description[Auto-Mod features are already enabled.]
     $color[${primary_color}]
 ]]
 
-$setGuildVar[AutoMod;false;$guildID]
+$setGuildVar[AutoMod;true;$guildID]
 
 $interactionReply[
     $ephemeral
-    $description[Auto-Mod features have been disabled. (Old settings are saved)]
+    $description[Auto-Mod features have been enabled.]
     $color[${primary_color}]
 ]
 `
