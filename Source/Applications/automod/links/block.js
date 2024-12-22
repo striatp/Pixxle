@@ -1,4 +1,4 @@
-const system = require("../../config.js");
+const system = require("../../../config.js");
 const primary_color = `${system.COLORS.primary}`;
 
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
             {
                 type: 3,
                 name: "domain",
-                description: "The domain to block.",
+                description: "The domain to block (e.g.: google.come).",
                 required: true
             }
         ]
