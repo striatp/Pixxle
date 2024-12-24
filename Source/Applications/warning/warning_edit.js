@@ -17,10 +17,8 @@ module.exports = {
                 type: 3,
                 name: "new_reason",
                 description: "The updated reason for the warning.",
-                required: true,
-                max_length: 
-            },
-            {}
+                required: true
+            }
         ]
     },
     code: ``
